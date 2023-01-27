@@ -71,7 +71,7 @@ export default function Setup({ navigation }: StackScreenProps<any>) {
     return (
         <>
             <StatusBar style="dark" />
-            <View style={styles.container}>
+            <View testID="setup-screen" style={styles.container}>
                 <MapView
                     onPress={handleMapPress}
                     onPoiClick={handleMapPress}
