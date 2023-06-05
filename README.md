@@ -1,8 +1,16 @@
-# dev finder
+# Dev Finder App
 
 **dev finder** is a mobile app that helps developers find peers in a geographic area, fostering new projects, knowledge sharing and professional growth.
 
-Because physical proximity between users is important for such collaboration, you are encouagaed to fork this project for your own local area, add your own branding, maybe translate it, and release it to the app stores. You will also have to have a backend service to connect your fork to, as instructed [below](#backend-setup).
+<div align="center">
+    <img src="./documentation/01-signup.png" alt="Sign up screen" width="auto" height="480">
+    <img src="./documentation/02-main.png" alt="Main screen" width="auto" height="480">
+    <img src="./documentation/03-profile.png" alt="Profile screen" width="auto" height="480">
+</div>
+
+Because physical proximity between users is important for such collaboration, you are encouraged to fork this project for your own local area, add your own branding, maybe translate it, and make it part of your portfolio.
+
+Do not forget to setup a backend service to connect your fork to, as instructed [below](#backend-setup).
 
 ## Installation
 
@@ -28,7 +36,9 @@ To access your server online without running json-server locally, you can set yo
 https://my-json-server.typicode.com/<your-github-username>/<your-github-repo>
 ```
 
-To use `my-json-server`, make sure your `db.json` is located at the repo root.
+To use `my-json-server`, make sure your `db.json` file is located at the repository root.
+
+**\*NOTE**: my-json-server have some limitations. For example, you'll not be able to add any data into the server db.\*
 
 ### Setup
 
