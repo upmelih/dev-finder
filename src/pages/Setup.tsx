@@ -36,11 +36,23 @@ export default function Setup({ navigation }: StackScreenProps<any>) {
             });
     }, []);
 
-    function handleMapPress(event: MapPressEvent | PoiClickEvent) {
+    /**
+     * Updates the marker location on the map when the user presses on the map or on a point of interest.
+     * @param event The event object containing the coordinate of the press.
+     */
+    function handleMapPress(event: MapPressEvent | PoiClickEvent): void {
         setMarkerLocation(event.nativeEvent.coordinate);
     }
 
-    async function handleSignUp() {
+    /**
+     * Handles the sign up process by getting the user's GitHub information and posting it to the server.
+     * If the user does not exist on GitHub, it rejects with an error message.
+     * If there is an error, it rejects with the error object.
+     * If the process is successful, it sets the authentication context value and navigates to the Main screen.
+     * @returns A promise that resolves when the process is successful and rejects when there is an error.
+     * @throws An error if the user does not exist on GitHub or if there is an error posting the user to the server.
+     */
+    async function handleSignUp(): Promise<void> {
         setIsAuthenticating(true);
         getGitHubUserInfo(username)
             .catch((err) => {

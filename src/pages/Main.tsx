@@ -30,6 +30,11 @@ export default function Main({ navigation }: StackScreenProps<any>) {
         loadInitialPosition();
     }, []);
 
+    /**
+     * Loads the user's current location and sets it as the current region.
+     * If the user denies the location permission, it uses the default location.
+     * @returns A promise that resolves to void.
+     */
     function loadInitialPosition() {
         tryGetCurrentPosition()
             .catch(() => DEFAULT_LOCATION)
@@ -43,6 +48,13 @@ export default function Main({ navigation }: StackScreenProps<any>) {
             });
     }
 
+    /**
+     * Handles the logout action. It first retrieves the current user's information from the server using their login.
+     * If the user exists, it deletes their account from the server.
+     * Then it sets the authentication context value to null and navigates the user to the Setup screen.
+     * If any error occurs, it shows an alert with the error message.
+     * @returns A promise that resolves to void.
+     */
     function handleLogout() {
         if (currentUser) {
             getUserByLogin(currentUser)
@@ -65,6 +77,10 @@ export default function Main({ navigation }: StackScreenProps<any>) {
         }
     }
 
+    /**
+     * Fits the map to show all the devs and the user's location.
+     * @returns A promise that resolves to void.
+     */
     function fitAll() {
         const locations: LatLng[] = devs.map((dev) => dev.coordinates);
         if (userLocation) locations.push(userLocation);
