@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native';
-import MapView, { LatLng, MapPressEvent, Marker, PoiClickEvent, Region } from 'react-native-maps';
+import { Alert, KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native';
 import { DEFAULT_LOCATION, tryGetCurrentPosition } from '../utils/location';
+import MapView, { LatLng, MapPressEvent, Marker, PoiClickEvent, Region } from 'react-native-maps';
+import React, { useContext, useEffect, useState } from 'react';
 
+import { AuthenticationContext } from '../context/AuthenticationContext';
+import BigButton from '../components/BigButton';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import Spinner from 'react-native-loading-spinner-overlay';
-import BigButton from '../components/BigButton';
+import axios from 'axios';
+import { getUserInfo as getGitHubUserInfo } from '../services/github';
+import { postUser } from '../services/users';
 
 export default function Setup({ navigation }: StackScreenProps<any>) {
-    // TODO: use username to fetch user data from GitHub API and store it in the app state
+    const authenticationContext = useContext(AuthenticationContext);
     const [username, setUsername] = useState('');
 
     const [isAuthenticating, setIsAuthenticating] = useState<boolean>(false);
@@ -36,13 +40,32 @@ export default function Setup({ navigation }: StackScreenProps<any>) {
         setMarkerLocation(event.nativeEvent.coordinate);
     }
 
-    function handleSignUp() {
-        // TODO: handle sign up logic. For now, we'll just fake it.
+    async function handleSignUp() {
         setIsAuthenticating(true);
-        navigation.replace('Main');
-        setTimeout(() => {
-            setIsAuthenticating(false);
-        }, 2000);
+        getGitHubUserInfo(username)
+            .catch((err) => {
+                if (axios.isAxiosError(err) && err.response?.status == 404) {
+                    return Promise.reject('There is no such username on GitHub.');
+                } else {
+                    return Promise.reject(err);
+                }
+            })
+            .then((fromGitHub) =>
+                postUser({
+                    login: fromGitHub.login,
+                    avatar_url: fromGitHub.avatar_url,
+                    bio: fromGitHub.bio,
+                    company: fromGitHub.company,
+                    name: fromGitHub.name,
+                    coordinates: markerLocation,
+                })
+            )
+            .then(() => {
+                authenticationContext?.setValue(username);
+                navigation.replace('Main');
+            })
+            .catch((err) => Alert.alert(String(err)))
+            .finally(() => setIsAuthenticating(false));
     }
 
     return (
