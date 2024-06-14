@@ -1,11 +1,12 @@
 {
   "users": [
+
     {
       "login": "torvalds",
       "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
       "bio": null,
-      "company": "Linux Foundation",
-      "name": "Linus Torvalds",
+      "company": "Simpliy Embedded",
+      "name": "Melih Seyhan",
       "coordinates": {
         "latitude": 37.78796109088732,
         "longitude": -122.41171214729549

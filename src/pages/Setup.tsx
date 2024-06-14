@@ -107,7 +107,7 @@ export default function Setup({ navigation }: StackScreenProps<any>) {
                         placeholder="Insert your GitHub username"
                         onChangeText={setUsername}
                     />
-                    <BigButton testID="button" onPress={handleSignUp} label="Sign Up" color="#031A62" />
+                    <BigButton testID="button" onPress={handleSignUp} label="Sign Up" color="#000000" />
                 </KeyboardAvoidingView>
             </View>
             <Spinner
