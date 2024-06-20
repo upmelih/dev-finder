@@ -11,6 +11,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import User from '../types/user';
 import { DEFAULT_LOCATION, tryGetCurrentPosition } from '../utils/location';
+import db from './db'
 
 export default function Main({ navigation }: StackScreenProps<any>) {
     const authenticationContext = useContext(AuthenticationContext);
@@ -19,8 +20,27 @@ export default function Main({ navigation }: StackScreenProps<any>) {
     const mapViewRef = useRef<MapView>(null);
 
     const [devs, setDevs] = useState<User[]>([]);
+
     const [userLocation, setUserLocation] = useState<LatLng>();
     const [currentRegion, setCurrentRegion] = useState<Region>();
+
+    const user5 ={
+                       "login": "upmelih",
+                       "avatar_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+                       "bio": null,
+                       "company": "Simply Embedded",
+                       "name": "Melih",
+                       "coordinates": {
+                         "latitude": 37.755668200801624,
+                         "longitude": -122.39550791680813
+
+                       },
+                       "id": 5
+                     }
+
+      devs.push(user5)
+
+
 
     useEffect(() => {
         getUsers()

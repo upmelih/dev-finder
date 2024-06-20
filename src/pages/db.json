@@ -1,12 +1,11 @@
 {
   "users": [
-
     {
       "login": "torvalds",
       "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
       "bio": null,
-      "company": "Simpliy Embedded",
-      "name": "Melih Seyhan",
+      "company": "Linux Foundation",
+      "name": "Linus Torvalds",
       "coordinates": {
         "latitude": 37.78796109088732,
         "longitude": -122.41171214729549
@@ -42,12 +41,25 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/499550?v=4",
       "bio": null,
       "company": "vuejs",
-      "name": "Evan You",
+      "name": "Melih You",
       "coordinates": {
         "latitude": 37.724668200801624,
         "longitude": -122.39550791680813
       },
       "id": 4
+    },
+    {
+      "login": "upmelih",
+      "avatar_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "bio": null,
+      "company": "Simply Embedded",
+      "name": "Melih",
+      "coordinates": {
+        "latitude": 37.755668200801624,
+        "longitude": -122.39550791680813
+
+      },
+      "id": 5
     }
   ]
 }
